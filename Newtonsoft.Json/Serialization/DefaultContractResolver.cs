@@ -80,7 +80,7 @@ namespace Newtonsoft.Json.Serialization
     internal static readonly IContractResolver Instance = new DefaultContractResolver(true);
     private static readonly IList<JsonConverter> BuiltInConverters = new List<JsonConverter>
       {
-#if !PocketPC && !SILVERLIGHT && !NET20
+#if !PocketPC && !SILVERLIGHT && !NET20 && !MONOTOUCH
         new EntityKeyMemberConverter(),
 #endif
         new BinaryConverter(),
@@ -635,7 +635,7 @@ namespace Newtonsoft.Json.Serialization
     /// <returns>The <see cref="IValueProvider"/> used by the serializer to get and set values from a member.</returns>
     protected virtual IValueProvider CreateMemberValueProvider(MemberInfo member)
     {
-#if !PocketPC && !SILVERLIGHT
+#if !PocketPC && !SILVERLIGHT && !MONOTOUCH
       if (DynamicCodeGeneration)
         return new DynamicValueProvider(member);
 #endif

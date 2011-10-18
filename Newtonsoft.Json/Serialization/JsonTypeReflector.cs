@@ -51,7 +51,7 @@ namespace Newtonsoft.Json.Serialization
     public const string ShouldSerializePrefix = "ShouldSerialize";
 
     private static readonly ThreadSafeStore<ICustomAttributeProvider, Type> JsonConverterTypeCache = new ThreadSafeStore<ICustomAttributeProvider, Type>(GetJsonConverterTypeFromAttribute);
-#if !SILVERLIGHT && !PocketPC && !NET20
+#if !SILVERLIGHT && !PocketPC && !NET20 && !MONOTOUCH
     private static readonly ThreadSafeStore<Type, Type> AssociatedMetadataTypesCache = new ThreadSafeStore<Type, Type>(GetAssociateMetadataTypeFromAttribute);
 
     private const string MetadataTypeAttributeTypeName =
@@ -163,7 +163,7 @@ namespace Newtonsoft.Json.Serialization
     }
 #endif
 
-#if !SILVERLIGHT && !PocketPC && !NET20
+#if !SILVERLIGHT && !PocketPC && !NET20 && !MONOTOUCH
     private static Type GetAssociatedMetadataType(Type type)
     {
       return AssociatedMetadataTypesCache.Get(type);
@@ -288,7 +288,7 @@ namespace Newtonsoft.Json.Serialization
     {
       get
       {
-#if !PocketPC && !SILVERLIGHT
+#if !PocketPC && !SILVERLIGHT && !MONOTOUCH
         if (DynamicCodeGeneration)
           return DynamicReflectionDelegateFactory.Instance;
 #endif

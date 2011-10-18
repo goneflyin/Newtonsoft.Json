@@ -69,7 +69,7 @@ namespace Newtonsoft.Json.Converters
 
     private byte[] GetByteArray(object value)
     {
-#if !SILVERLIGHT && !PocketPC && !NET20 && !MONODROID
+#if !SILVERLIGHT && !PocketPC && !NET20 && !MONODROID && !MONOTOUCH
       if (value.GetType().AssignableToTypeName(BinaryTypeName))
       {
         IBinary binary = DynamicWrapper.CreateWrapper<IBinary>(value);
